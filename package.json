@@ -5,7 +5,11 @@
 	"scripts": {
 		"build": "wrangler deploy --dry-run --outdir=dist",
 		"dev": "wrangler dev --port 4346",
-		"deploy": "wrangler deploy --minify"
+		"deploy": "wrangler deploy --minify",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check src/",
+		"test": "vitest run",
+		"ci": "pnpm typecheck && pnpm lint && pnpm test"
 	},
 	"dependencies": {
 		"hono": "^4.11.7",
@@ -13,6 +17,11 @@
 		"zod": "^3.24.0"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@cloudflare/vitest-pool-workers": "^0.8.0",
+		"@cloudflare/workers-types": "^4.20250124.0",
+		"typescript": "^5.7.0",
+		"vitest": "^3.0.0",
 		"wrangler": "^4.4.0"
 	}
 }
